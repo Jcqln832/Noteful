@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './NotePageMain.css'
-import './NoteListMain.css'
+import './main.css'
 
-const MainMain = (props) => {
 
+export default function Main(props) {
     return (
       <section className='NoteListMain'>
         <ul>
@@ -19,6 +18,4 @@ const MainMain = (props) => {
         </ul>
       </section>
     )
-}
-
-export default MainMain;
+  }
