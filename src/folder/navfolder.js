@@ -17,6 +17,10 @@ const NavFolder = (props) => {
             </NavLink>
           </li>
         )}
+        <li><NavLink to={`/add-folder`}>
+            Add Folder
+          </NavLink>
+        </li>
         </ul>
       </div>
       }

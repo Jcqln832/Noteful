@@ -8,4 +8,4 @@ const apiContext = React.createContext({
   addNote: () => {},
 })
 
-export default apiContext
+export default apiContext;
