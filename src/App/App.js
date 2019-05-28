@@ -98,10 +98,6 @@ class App extends Component {
                 )
               }}
             />
-             {/* <Route 
-                exact path='/add-folder'
-                render = { () => {} }
-            /> */}
         </nav>
         <header className='App__header'>
           <h1>
@@ -143,7 +139,6 @@ class App extends Component {
               />
             }
           />
-          }
           <Route
             path='/add-note'
             render = {(routerProps) =>

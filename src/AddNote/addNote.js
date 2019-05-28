@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import {withRouter} from 'react-router-dom';
-// import ValidationError from './ValidationError';
+import ValidationError from '../ValidationError';
 
 class AddNote extends Component {
   constructor(props) {
@@ -10,52 +10,58 @@ class AddNote extends Component {
     this.state = {
       name: "",
       content: "",
-      folder: ""
+      folder: "",
+      error: "",
+      nameValid: false,
+      formValid: false,
+      validationMessages: {
+        name: ''
+      }
     };
   }
 
-    nameChanged(name) {
-      this.setState({
-        name
-       });
+  nameChanged(name) {
+    this.setState({name})
+    // () => {this.validateName(name)});
     }
 
-    contentChanged(content) {
-      this.setState({
-          content
-      });
+  contentChanged(content) {
+    this.setState({
+      content
+    });
+  }
+
+  folderChanged(folder) {
+    this.setState({
+      folder
+    });
+  }
+
+  formValid() {
+    this.setState({
+      formValid: this.state.nameValid
+    });
+  }
+
+  // Validate note name 
+  validateName(fieldValue) {
+    const fieldErrors = {...this.state.validationMessages};
+    let hasError = false;
+
+    fieldValue = fieldValue.trim();
+    if(fieldValue.length === 0) {
+      fieldErrors.name = 'Note name is required';
+      hasError = true;
+    } else {
+      fieldErrors.name = "";
+      hasError = false;
     }
 
-    folderChanged(folder) {
-        this.setState({
-            folder
-        });
-    }
-
-//   validateName(fieldValue) {
-//     const fieldErrors = {...this.state.validationMessages};
-//     let hasError = false;
-
-//     fieldValue = fieldValue.trim();
-//     if(fieldValue.length === 0) {
-//       fieldErrors.name = 'Name is required';
-//       hasError = true;
-//     } else {
-//       if (fieldValue.length < 3) {
-//         fieldErrors.name = 'Name must be at least 3 characters long';
-//         hasError = true;
-//       } else {
-//         fieldErrors.name = '';
-//         hasError = false;
-//       }
-//     }
-
-//     this.setState({
-//       validationMessages: fieldErrors,
-//       nameValid: !hasError
-//     }, this.formValid );
-
-
+    this.setState({
+      validationMessages: fieldErrors,
+      nameValid: !hasError
+    }, this.formValid );
+  }
 
 handleSubmit(e) {
   e.preventDefault();
@@ -75,6 +81,13 @@ handleSubmit(e) {
       "Content-Type": "application/json",
     }
   }
+
+// prevent submit without title/name field filled in
+this.validateName(name);
+if(this.state.nameValid === false) {
+  return;
+}
+
   // put the data into STORE(db)
   fetch(url, options)
   .then(res => {
@@ -118,7 +131,7 @@ handleSubmit(e) {
                 <div className="field">
                     <label htmlFor="note-name-input">Title</label>
                     <input type="text" name="name" id="note-name-input" onChange={e => this.nameChanged(e.target.value)}/>
-                    {/* <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>   */}
+                    {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
                 </div>
                 <div className="field">
                     <label htmlFor="folder-content-input">Content</label>
