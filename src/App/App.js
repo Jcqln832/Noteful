@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import MainNav from '../folder/navmain';
-import FolderNav from '../folder/navfolder';
+import FolderNav from '../folder/foldernav';
 import NoteNav from '../folder/NoteNav';
 import AddFolder from '../AddFolder/addFolder'
 import AddNote from '../AddNote/addNote'
 import apiContext from '../apiContext';
 import config from '../config';
+import NavError from '../ErrorBoundaries/NavError';
+import NoteError from '../ErrorBoundaries/NoteError';
 import './App.css';
 
 class App extends Component {
@@ -52,7 +54,6 @@ class App extends Component {
   }
 
   addFolder = (folder) => {
-    console.dir(this);
     this.setState({
       folders: [...this.state.folders, folder]
     });
@@ -77,16 +78,33 @@ class App extends Component {
     <apiContext.Provider value={value}>
       <div className='App'>
         <nav className='App__nav'>
+          <NavError>
             <Route 
                 exact path='/' 
-                component = {MainNav}
+                // component = {MainNav}
+                render = {routeProps => {
+                  return (
+                    <MainNav 
+                      {...routeProps}
+                      folders={value.folders}
+                    />
+                  )
+                }}
             />
             <Route 
               path='/folder/:folderId'
-              component={FolderNav}
+              // component={FolderNav}
+              render = {routeProps => {
+                return (
+                  <FolderNav 
+                    {...routeProps}
+                    folders={value.folders}
+                  />
+                )
+              }}
             />
             <Route 
-              path='/note/:noteId' 
+              path='/note/:noteId/'
               render = {routeProps => {
                 const note = value.notes.find(note => note.id === routeProps.match.params.noteId)
                 const folder = value.folders.find(folder => folder.id === note.folderId)
@@ -98,6 +116,7 @@ class App extends Component {
                 )
               }}
             />
+          </NavError>
         </nav>
         <header className='App__header'>
           <h1>
@@ -107,6 +126,7 @@ class App extends Component {
           </h1>
         </header>
         <main className='App__main'>
+          <NoteError>
           <Route
             exact path='/'
             render ={(routerProps) =>
@@ -144,10 +164,11 @@ class App extends Component {
             render = {(routerProps) =>
               <AddNote
                 folders={value.folders}
-                addNote = {value.addNote}
+                addNote={value.addNote}
               />
             }
           />
+          </NoteError>
         </main>
       </div>
       </apiContext.Provider>

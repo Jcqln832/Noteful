@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NavFolder = (props) => {
+const FolderNav = (props) => {
 
     return (
       <div className='Nav'>
@@ -13,9 +13,13 @@ const NavFolder = (props) => {
             </NavLink>
           </li>
         )}
+         <li><NavLink to={`/add-folder`}>
+            Add Folder
+          </NavLink>
+          </li>
         </ul>
       </div>
     )
 }
 
-export default NavFolder;
+export default FolderNav;

@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import CircleButton from '../CircleButton/CircleButton'
@@ -8,8 +7,6 @@ import './NotePageNav.css'
 const NoteNav = (props) => {
   return (
     <div className='Nav'>
-      {/* <NavLink to={`/folder/${props.noteFolder.id}`} className="NotePageNav_back-button">Go back</NavLink>
-      {props.folder && ( */}
       <CircleButton
         tag='button'
         role='link'

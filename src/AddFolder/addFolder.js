@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import {withRouter} from 'react-router-dom';
-import { dom } from '@fortawesome/fontawesome-svg-core';
-// import ValidationError from './ValidationError';
+// import ValidationError from '../ValidationError';
 
 class AddFolder extends Component {
   constructor(props) {
@@ -10,7 +9,11 @@ class AddFolder extends Component {
     //capture form inputs here to make a controlled form
     this.state = {
       name: "",
-      error: ""
+      error: "",
+      nameValid: false,
+      validationMessages: {
+        name: ''
+      }
     };
   }
 
@@ -20,28 +23,24 @@ class AddFolder extends Component {
     });
   }
 
-//   validateName(fieldValue) {
-//     const fieldErrors = {...this.state.validationMessages};
-//     let hasError = false;
+  // validateFolder(fieldValue) {
+  //   const fieldErrors = {...this.state.validationMessages};
+  //   let hasError = false;
 
-//     fieldValue = fieldValue.trim();
-//     if(fieldValue.length === 0) {
-//       fieldErrors.name = 'Name is required';
-//       hasError = true;
-//     } else {
-//       if (fieldValue.length < 3) {
-//         fieldErrors.name = 'Name must be at least 3 characters long';
-//         hasError = true;
-//       } else {
-//         fieldErrors.name = '';
-//         hasError = false;
-//       }
-//     }
+  //   fieldValue = fieldValue.trim();
+  //   if(fieldValue.length === 0) {
+  //     fieldErrors.name = 'Name is required';
+  //     hasError = true;
+  //     } else {
+  //       fieldErrors.name = '';
+  //       hasError = false;
+  //     }
+  //   }
 
-//     this.setState({
-//       validationMessages: fieldErrors,
-//       nameValid: !hasError
-//     }, this.formValid );
+  //   this.setState({
+  //     validationMessages: fieldErrors,
+  //     nameValid: !hasError
+  //   }, this.formValid );
 
 
 
@@ -89,7 +88,7 @@ handleSubmit(e) {
                 <div className="field">
                     <label htmlFor="folder-name-input">Name</label>
                     <input type="text" name="name" id="folder-name-input" onChange={e => this.nameChanged(e.target.value)}/>
-                    {/* <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>   */}
+                     {/* { <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/> } */}
                 </div>
                 <div className="buttons">
                     <button type="submit">
