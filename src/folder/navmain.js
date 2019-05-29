@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const NavMain = (props) => {
 
@@ -22,3 +23,11 @@ const NavMain = (props) => {
   )}
 
 export default NavMain;
+
+NavMain.defaultProps = {
+  folders: {}
+};
+
+NavMain.propTypes = {
+  folders: PropTypes.arrayOf(PropTypes.object)
+};

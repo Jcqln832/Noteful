@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 const FolderNav = (props) => {
 
@@ -23,3 +24,11 @@ const FolderNav = (props) => {
 }
 
 export default FolderNav;
+
+FolderNav.defaultProps = {
+  folders: []
+};
+
+FolderNav.propTypes = {
+  folders: PropTypes.array.isRequired
+};

@@ -15,7 +15,7 @@ class NavError extends Component {
     render() {
         if (this.state.hasError) {
             return (
-                <h2>Coudl not display the navigation</h2>
+                <h2>Could not display the navigation</h2>
             );
         }
         return this.props.children;

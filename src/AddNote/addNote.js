@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import config from '../config';
 import {withRouter} from 'react-router-dom';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 
 class AddNote extends Component {
   constructor(props) {
@@ -167,3 +168,13 @@ handleSubmit(e) {
 }
 
 export default withRouter(AddNote);
+
+AddNote.defaultProps = {
+  history: {
+    goBack: () => {}
+  }
+}
+
+AddNote.propTypes = {
+  addNote: PropTypes.func.isRequired
+};

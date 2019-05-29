@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 // import ValidationError from '../ValidationError';
 
 class AddFolder extends Component {
@@ -102,3 +103,13 @@ handleSubmit(e) {
 }
 
 export default withRouter(AddFolder);
+
+AddFolder.defaultProps = {
+  history: {
+    goBack: () => {}
+  }
+}
+
+AddFolder.propTypes = {
+  addFolder: PropTypes.func.isRequired
+};

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import './Note.css'
 import  apiContext from '../apiContext';
+import PropTypes from 'prop-types';
 
 export default function Note(props) {
   return (
@@ -36,3 +37,15 @@ export default function Note(props) {
    </apiContext.Consumer>
   )
 }
+
+Note.defaultProps = {
+  id: "",
+  name: "",
+  modified: ""
+}
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  modified: PropTypes.string
+};

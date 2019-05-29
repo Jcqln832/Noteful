@@ -1,8 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import CircleButton from '../CircleButton/CircleButton'
 import './NotePageNav.css'
+import PropTypes from 'prop-types';
 
 const NoteNav = (props) => {
   return (
@@ -33,3 +34,7 @@ NoteNav.defaultProps = {
     goBack: () => {}
   }
 }
+
+NoteNav.propTypes = {
+  noteFolder: PropTypes.object.isRequired
+};
