@@ -112,13 +112,19 @@ handleSubmit(e) {
         name: "",
         content: "",
         folder: ""
-      });
+        }, () => {this.props.addNote(
+        {name: name,
+        folderId: storeFolder.Id,
+        content: content}
+        )}
+        );
+      // );
       //get data back out of Store and re-render app
-      this.props.addNote(
-          {name: name,
-          folderId: storeFolder.Id,
-          content: content}
-      );
+      // this.props.addNote(
+      //     {name: name,
+      //     folderId: storeFolder.Id,
+      //     content: content}
+      // );
       this.props.history.push('/');
     })
     .catch(err => {
