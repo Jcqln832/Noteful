@@ -20,7 +20,7 @@ class AddNote extends Component {
         name: '',
         folder: ''
       }
-    };
+    }
   }
 
   nameChanged(name) {
@@ -61,7 +61,6 @@ class AddNote extends Component {
   validateForm(name, folder) {
    const nameMessage =  this.validateName(name);
    const folderMessage =  this.validateFolder(folder);
-  //  const hasError = (nameMessage || folderMessage);
 
     this.setState({
       validationMessages: {
@@ -114,7 +113,7 @@ handleSubmit(e) {
         folder: ""
         }, () => {this.props.addNote(
         {name: name,
-        folderId: storeFolder.Id,
+        folderId: storeFolder.id,
         content: content}
         )}
         );
@@ -125,6 +124,7 @@ handleSubmit(e) {
       //     folderId: storeFolder.Id,
       //     content: content}
       // );
+      console.log("I ran");
       this.props.history.push('/');
     })
     .catch(err => {

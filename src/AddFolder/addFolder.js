@@ -55,8 +55,8 @@ handleSubmit(e) {
     headers: {
       "Content-Type": "application/json",
     }
-
   }
+
   fetch(url, options)
   .then(res => {
     if(!res.ok) {
@@ -69,7 +69,7 @@ handleSubmit(e) {
     this.setState({
       name: ""
     });
-    this.props.addFolder(folder);
+    this.props.addFolder({name: folder});
     this.props.history.push('/');
   })
   .catch(err => {
