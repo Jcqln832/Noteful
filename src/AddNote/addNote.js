@@ -40,22 +40,25 @@ class AddNote extends Component {
     });
   }
 
-  formValid() {
-    this.setState({
-      formValid: (this.state.nameValid && this.state.folderValid)
-    });
-  }
-
   // Validate note (has name) 
   validateName(fieldValue) {
     fieldValue = fieldValue.trim();
     return (fieldValue.length === 0) ? 'Note name is required' : "";
   }
-   
+    
   // Validate folder (is selected)
   validateFolder(fieldValue) {
     fieldValue = fieldValue.trim();
     return (fieldValue.length === 0) ? 'Please choose a folder' : "" ;
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log("clicked!");
+    const name = this.state.name;
+    const folder = this.state.folder;
+    // Validate form fields before fetch attempt
+    this.validateForm(name, folder);
   }
 
   validateForm(name, folder) {
@@ -72,19 +75,22 @@ class AddNote extends Component {
     }, this.formValid );
   }
 
-handleSubmit(e) {
-  e.preventDefault();
-  const url = `${config.API_ENDPOINT}/notes`;
-  const folder = this.state.folder;
-  const storeFolder = this.props.folders.find(item => item.name === folder);
-  const name = this.state.name;
-  const content = this.state.content;
+  formValid() {
+    this.setState({
+      formValid: (this.state.nameValid && this.state.folderValid)
+    }, () => this.doFetch());
+  }
 
-  // Validate form fields before fetch attempt
-  this.validateForm(name, folder);
+  doFetch() {
+    const url = `${config.API_ENDPOINT}/notes`;
+    const folder = this.state.folder;
+    const storeFolder = this.props.folders.find(item => item.name === folder);
+    const name = this.state.name;
+    const content = this.state.content;
 
     if(this.state.formValid) {
-  
+      console.log("I ran");
+      console.log(this.state.formValid);
     const options = {
       method: 'POST',
       body: JSON.stringify({
@@ -134,6 +140,7 @@ handleSubmit(e) {
     });
   }
 }
+
   render () {
     const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
     const options = this.props.folders.map(
