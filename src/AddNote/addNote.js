@@ -120,7 +120,9 @@ class AddNote extends Component {
         }, () => {this.props.addNote(
         {name: name,
         folderId: storeFolder.id,
-        content: content}
+        content: content,
+        id: data.id
+      }
         )}
         );
       // );
@@ -153,17 +155,17 @@ class AddNote extends Component {
             <form className="Noteful-form" onSubmit={e => this.handleSubmit(e)}>
                 <div className="field">
                     <label htmlFor="note-name-input">Title</label>
-                    <input type="text" name="name" id="note-name-input" onChange={e => this.nameChanged(e.target.value)}/>
+                    <input type="text" name="name" id="note-name-input" aria-label="New note name" aria-required="true" onChange={e => this.nameChanged(e.target.value)}/>
                     {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
                 </div>
                 <div className="field">
                     <label htmlFor="folder-content-input">Content</label>
-                    <input type="text" name="content" id="content-name-input" onChange={e => this.contentChanged(e.target.value)}/>
+                    <input type="text" name="content" id="content-name-input" aria-label="Enter note content" onChange={e => this.contentChanged(e.target.value)}/>
                     {/* <ValidationError hasError={!this.state.contentValid} message={this.state.validationMessages.content}/>   */}
                 </div>
                 <div className="field">
                     <label htmlFor="folder-name-input">Folder</label>
-                    <select name="folder-name-input" id="folder-name-input" onChange={e => this.folderChanged(e.target.value)}>
+                    <select name="folder-name-input" id="folder-name-input" aria-label="Choose a folder" aria-required="true" onChange={e => this.folderChanged(e.target.value)}>
                         <option value ="None">Select one...</option>
                         {options}
                     </select>    

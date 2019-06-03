@@ -88,7 +88,7 @@ handleSubmit(e) {
             <form className="Noteful-form" onSubmit={e => this.handleSubmit(e)}>
                 <div className="field">
                     <label htmlFor="folder-name-input">Name</label>
-                    <input type="text" name="name" id="folder-name-input" onChange={e => this.nameChanged(e.target.value)}/>
+                    <input type="text" name="name" id="folder-name-input" aria-label="New folder name" aria-required="true" onChange={e => this.nameChanged(e.target.value)}/>
                      {/* { <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/> } */}
                 </div>
                 <div className="buttons">

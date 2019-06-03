@@ -15,6 +15,7 @@ import NavError from '../ErrorBoundaries/NavError';
 import NoteError from '../ErrorBoundaries/NoteError';
 import './App.css';
 
+let something = 0;
 class App extends Component {
 
   state = {
