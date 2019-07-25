@@ -51,7 +51,7 @@ handleSubmit(e) {
   const folder = this.state.name;
   const options = {
     method: 'POST',
-    body: JSON.stringify({name: folder}),
+    body: JSON.stringify({title: folder}),
     headers: {
       "Content-Type": "application/json",
     }

@@ -89,19 +89,19 @@ class AddNote extends Component {
     const content = this.state.content;
 
     if(this.state.formValid) {
-      console.log("I ran");
       console.log(this.state.formValid);
     const options = {
       method: 'POST',
       body: JSON.stringify({
-          name: name,
-          folderId: storeFolder.id,
+          title: name,
+          folder_id: storeFolder.id,
           content: content
       }),
       headers: {
         "Content-Type": "application/json",
       }
     }
+    console.log(options)
 
     // put the data into STORE(db)
     fetch(url, options)

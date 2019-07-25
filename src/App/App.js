@@ -15,7 +15,7 @@ import NavError from '../ErrorBoundaries/NavError';
 import NoteError from '../ErrorBoundaries/NoteError';
 import './App.css';
 
-let something = 0;
+
 class App extends Component {
 
   state = {
@@ -109,8 +109,10 @@ class App extends Component {
             <Route 
               path='/note/:noteId/'
               render = {routeProps => {
-                const note = value.notes.find(note => note.id === routeProps.match.params.noteId)
+                const note = value.notes.find(note => note.id === Number(routeProps.match.params.noteId))
+                console.log(note)
                 const folder = value.folders.find(folder => folder.id === note.folderId)
+                console.log(folder)
                 return (
                   <NoteNav 
                     {...routeProps}
@@ -142,7 +144,7 @@ class App extends Component {
             path='/folder/:folderId'
             render ={(routerProps) =>
               <NoteListMain 
-                notes = {value.notes.filter(note => note.folderId === routerProps.match.params.folderId)}
+                notes = {value.notes.filter(note => note.folderId === Number(routerProps.match.params.folderId))}
               />
             }
           />
@@ -150,7 +152,7 @@ class App extends Component {
             path='/note/:noteId'
             render ={(routerProps) =>
               <NotePageMain 
-                note = {value.notes.find(note => note.id === routerProps.match.params.noteId)}
+                note = {value.notes.find(note => note.id === Number(routerProps.match.params.noteId))}
               />
             }
           />

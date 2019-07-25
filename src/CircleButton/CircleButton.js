@@ -20,6 +20,9 @@ NavCircleButton.defaultProps = {
 }
 
 NavCircleButton.propTypes = {
-  tag: PropTypes.string.isRequired,
+   tag: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func
+  ]),
   className: PropTypes.string.isRequired,
 };
