@@ -26,18 +26,35 @@ export default class Note extends React.Component {
       },
     })
       .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(() => {
-        this.context.value.deleteNote(noteId)
-        // allow parent to perform extra behaviour
-        this.props.onDeleteNote(noteId)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
+        if (!res.ok) {
+          return res.json().then(e => console.error(e));
+        } else {
+        // return res.json().then(() => {
+          this.context.deleteNote(noteId)
+          this.props.doRedirect(noteId)
+        }
+        });
+        // if (!res.ok) 
+        //   return res.json().then(e => Promise.reject(e));
+        // return res.json()
+        // let myJson = res.json();
+        // console.log('myJson', myJson);
+        // return myJson;
+        // .catch(error => {
+        //   console.error({ error })
+        // });
+      // })
+      // .then(() => {
+      // console.log('1')
+      //   this.context.value.deleteNote(noteId)
+      //   console.log('2')
+      //   // allow parent to perform extra behaviour
+      //   this.props.onDeleteNote(noteId)
+      //   console.log('3')
+      // })
+      // .catch(error => {
+      //   console.error({ error })
+      // })
   }
 
   render() {
