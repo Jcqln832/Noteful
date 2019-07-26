@@ -11,11 +11,6 @@ export default class NotePageMain extends React.Component {
   }
   static contextType = ApiContext
 
-  doRedirect = noteId => {
-    console.log("redirect ran")
-    this.props.history.push(`/`)
-  }
-
   render() {
     const { id, name, content, modified } = this.props.note
     return (
@@ -24,7 +19,6 @@ export default class NotePageMain extends React.Component {
           id={id}
           name={name}
           modified={modified}
-          doRedirect={this.doRedirect}
         />
         <div className='NotePageMain__content'>
           {content.split(/\n \r|\n/).map((para, i) =>

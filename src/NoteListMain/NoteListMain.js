@@ -6,7 +6,12 @@ import CircleButton from '../CircleButton/CircleButton'
 import './NoteListMain.css'
 import PropTypes from 'prop-types';
 
+
 export default function NoteListMain(props) {
+  // const doRedirect = noteId => {
+  //   console.log("redirect ran")
+  //   this.props.history.push(`/`)
+  // }
   return (
     <section className='NoteListMain'>
       <ul>
@@ -16,6 +21,7 @@ export default function NoteListMain(props) {
               id={note.id}
               name={note.name}
               modified={note.modified}
+              // doRedirect={doRedirect}
             />
           </li>
         )}

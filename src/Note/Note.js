@@ -7,17 +7,20 @@ import ApiContext from '../apiContext'
 import config from '../config'
 import './Note.css'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 
-export default class Note extends React.Component {
+class Note extends React.Component {
   static defaultProps ={
     onDeleteNote: () => {},
   }
   static contextType = ApiContext;
 
+
   handleClickDelete = e => {
     e.preventDefault()
     const noteId = this.props.id
+    console.log(this.props)
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
@@ -31,7 +34,8 @@ export default class Note extends React.Component {
         } else {
         // return res.json().then(() => {
           this.context.deleteNote(noteId)
-          this.props.doRedirect(noteId)
+          // this.props.doRedirect(noteId)
+          this.props.history.push('/')
         }
         });
         // if (!res.ok) 
@@ -88,6 +92,9 @@ export default class Note extends React.Component {
     )
   }
 }
+
+export default withRouter(Note);
+
 //import PropTypes from 'prop-types';
 // import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -126,11 +133,13 @@ export default class Note extends React.Component {
 Note.defaultProps = {
   id: "",
   name: "",
-  modified: ""
+  modified: "",
+  // doRedirect: ""
 }
 
 Note.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  modified: PropTypes.string
+  modified: PropTypes.string,
+  // doRedirect: PropTypes.func.isRequired
 };
