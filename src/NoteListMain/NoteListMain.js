@@ -12,6 +12,11 @@ export default function NoteListMain(props) {
   //   console.log("redirect ran")
   //   this.props.history.push(`/`)
   // }
+
+  // function handleDeleteNote(noteId) {
+  //   this.props.history.push(`/`)
+  // }
+
   return (
     <section className='NoteListMain'>
       <ul>
@@ -21,7 +26,6 @@ export default function NoteListMain(props) {
               id={note.id}
               name={note.name}
               modified={note.modified}
-              // doRedirect={doRedirect}
             />
           </li>
         )}

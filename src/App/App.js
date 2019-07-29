@@ -14,6 +14,7 @@ import config from '../config';
 import NavError from '../ErrorBoundaries/NavError';
 import NoteError from '../ErrorBoundaries/NoteError';
 import './App.css';
+import { withRouter } from 'react-router-dom';
 
 
 class App extends Component {
@@ -68,13 +69,18 @@ class App extends Component {
     console.log(this.state.notes);
   }
 
+  doRedirect = (noteId) => {
+    this.props.history.push(`/`)
+  }
+
   render() {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
       addFolder: this.addFolder,
       addNote: this.addNote,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      doRedirect: this.doRedirect
     }
     
     return (
@@ -181,4 +187,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

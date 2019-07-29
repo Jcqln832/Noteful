@@ -11,6 +11,10 @@ export default class NotePageMain extends React.Component {
   }
   static contextType = ApiContext
 
+  // handleDeleteNote (noteId) {
+  //   this.props.history.push(`/`)
+  // }
+
   render() {
     const { id, name, content, modified } = this.props.note
     return (
@@ -19,6 +23,7 @@ export default class NotePageMain extends React.Component {
           id={id}
           name={name}
           modified={modified}
+          // onDeleteNote = {this.handleDeleteNote}
         />
         <div className='NotePageMain__content'>
           {content.split(/\n \r|\n/).map((para, i) =>
@@ -34,9 +39,7 @@ export default class NotePageMain extends React.Component {
 // import Note from '../Note/Note'
 // import './NotePageMain.css'
 
-// handleDeleteNote = noteId => {
-//   this.props.history.push(`/`)
-// }
+
 
 // export default function NotePageMain(props) {
 
