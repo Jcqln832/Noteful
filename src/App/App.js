@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link} from 'react-router-dom';
+import { Route, Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import NoteListMain from '../NoteListMain/NoteListMain';
@@ -14,8 +14,6 @@ import config from '../config';
 import NavError from '../ErrorBoundaries/NavError';
 import NoteError from '../ErrorBoundaries/NoteError';
 import './App.css';
-import { withRouter } from 'react-router-dom';
-
 
 class App extends Component {
 

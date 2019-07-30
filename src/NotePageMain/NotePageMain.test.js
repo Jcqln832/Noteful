@@ -14,16 +14,16 @@ describe(`NotePageMain component`, () => {
     }
   }
 
-  it('renders a .NotePageMain by default', () => {
-    const wrapper = shallow(<NotePageMain />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
+  // it('renders a .NotePageMain by default', () => {
+  //   const wrapper = shallow(<NotePageMain />)
+  //   expect(toJson(wrapper)).toMatchSnapshot()
+  // })
 
-  it('renders a Note with note prop', () => {
-    const note = shallow(<NotePageMain {...props} />)
-      .find('Note')
-    expect(toJson(note)).toMatchSnapshot()
-  })
+  // it('renders a Note with note prop', () => {
+  //   const note = shallow(<NotePageMain {...props} />)
+  //     .find('Note')
+  //   expect(toJson(note)).toMatchSnapshot()
+  // })
 
   it(`splits the content by \\n or \\n\\r, with a p foreach`, () => {
     [{
