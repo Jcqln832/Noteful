@@ -69,7 +69,7 @@ handleSubmit(e) {
     this.setState({
       name: ""
     });
-    this.props.addFolder({name: folder});
+    this.props.addFolder(data);
     this.props.history.push('/');
   })
   .catch(err => {

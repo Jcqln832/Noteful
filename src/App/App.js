@@ -162,16 +162,18 @@ class App extends Component {
           />
           <Route 
             path='/add-folder'
-            render ={(routerProps) =>
+            render ={(routeProps) =>
               <AddFolder
+                {...routeProps}
                 addFolder = {value.addFolder}
               />
             }
           />
           <Route
             path='/add-note'
-            render = {(routerProps) =>
+            render = {(routeProps) =>
               <AddNote
+                {...routeProps}
                 folders={value.folders}
                 addNote={value.addNote}
               />
