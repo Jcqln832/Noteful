@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": "jackiegalarza-bookmarks-app",
+  "alias": "jackiegalarza-noteful-app",
   "name": "noteful-app",
   "routes": [
       {
